@@ -35,7 +35,8 @@ export default {
 <style scoped>
 .container {
   background: url('/src/assets/home/background-home-desktop.jpg') no-repeat center center/cover;
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
 }
 
 @media (max-width: 1050px) {
