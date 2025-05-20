@@ -2,7 +2,7 @@
   <div class="crew-container">
     <Navigation />
     <main>
-      <PageHeading :number="'02'" text="Meet our crew" />
+      <PageHeading :number="'02'" :title="'Meet our crew'" />
       <div class="crew-content" v-if="currentCrew">
         <div class="crew-cont">
           <div class="crew-text-cont">
@@ -33,7 +33,7 @@
 <script>
 import Navigation from '@/components/Navigation.vue'
 import PageHeading from '@/components/PageHeading.vue'
-import CrewData from '@/assets/data.json'
+import CrewData from '@/data/data.json'
 export default {
   name: 'CrewView',
   components: {

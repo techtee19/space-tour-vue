@@ -1,12 +1,13 @@
 <template>
   <div></div>
   <Navigation />
-  <RouterView />
+  <router-view />
 </template>
 
 <script>
-import { RouterView } from 'vue-router'
 export default {}
 </script>
 
-<style scoped></style>
+<style scoped>
+@import './assets/main.css';
+</style>

@@ -44,7 +44,7 @@
 <script>
 import Navigation from '@/components/Navigation.vue'
 import PageHeading from '@/components/PageHeading.vue'
-import destinationData from '@/assets/data.json'
+import destinationData from '@/data/data.json'
 
 export default {
   name: 'DestinationView',
