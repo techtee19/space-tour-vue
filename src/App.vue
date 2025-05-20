@@ -1,10 +1,12 @@
-import { RouterLink, RouterView } from 'vue-router'
 <template>
   <div></div>
+  <Navigation />
   <RouterView />
 </template>
 
 <script>
+import { RouterView } from 'vue-router'
+import Navigation from './components/Navigation.vue'
 export default {}
 </script>
 
