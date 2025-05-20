@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="button">
-        <button>Explore</button>
+        <button @click="navigateToDestination">Explore</button>
       </div>
     </div>
   </div>
@@ -24,6 +24,11 @@ export default {
   components: {
     Navigation,
   },
+  methods: {
+    navigateToDestination() {
+      this.$$router.push('/destination')
+    },
+  },
 }
 </script>
 
@@ -31,5 +36,13 @@ export default {
 .container {
   background: url('/src/assets/home/background-home-desktop.jpg') no-repeat center center/cover;
   height: 100%;
+}
+
+@media (max-width: 1050px) {
+  .container {
+    background: url('/assets/home/background-home-tablet.jpg') no-repeat center center/cover;
+    height: auto;
+    min-height: 100vh;
+  }
 }
 </style>

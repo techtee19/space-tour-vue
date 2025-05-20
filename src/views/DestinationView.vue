@@ -1,37 +1,73 @@
 <template>
-  <div>
-    <h2 class="headings"><span>01</span>Pick your destination</h2>
-    <div class="dest-content">
-      <div class="dest-cont">
-        <div class="dest-img">
-          <img src="/starter-code/assets/destination/image-moon.png" alt="" />
-        </div>
-        <div class="dest-txt-cont">
-          <ul class="dest-list">
-            <li><a class="dest-link" href="">MOON</a></li>
-            <li><a class="dest-link" href="">MARS</a></li>
-            <li><a class="dest-link" href="">EUROPA</a></li>
-            <li><a class="dest-link" href="">TAITAN</a></li>
-          </ul>
-          <h1 class="dest-head">MOON</h1>
-          <p class="dest-txt">
-            See our planet as you’ve never seen it before. A perfect relaxing trip away to help
-            regain perspective and come back refreshed. While you’re there, take in some history by
-            visiting the Luna 2 and Apollo 11 landing sites.
-          </p>
-          <div class="dest-line"></div>
-          <div class="distance-cont">
-            <p class="distance-txt">avg.distance <span>384,400km</span></p>
-            <p class="distance-txt">est.travel time <span>3 days</span></p>
+  <div class="destination-container">
+    <Navigation />
+    <main>
+      <PageHeading number="01" title="Pick your destination" />
+      <div class="dest-content" v-if="currentDestination">
+        <div class="dest-cont">
+          <div class="dest-img">
+            <img :src="currentDestination.images.png" :alt="currentDestination.name" />
+          </div>
+          <div class="dest-txt-cont">
+            <ul class="dest-list">
+              <li v-for="dest in destinations" :key="dest.name">
+                <a
+                  class="dest-link"
+                  :class="{ 'dest-link--active': currentDestination.name === dest.name }"
+                  href="#"
+                  @click.prevent="selectDestination(dest.name.toLowerCase())"
+                >
+                  {{ dest.name.toUpperCase() }}
+                </a>
+              </li>
+            </ul>
+            <h1 class="dest-head">{{ currentDestination.name.toUpperCase() }}</h1>
+            <p class="dest-txt">
+              {{ currentDestination.description }}
+            </p>
+            <div class="dest-line"></div>
+            <div class="distance-cont">
+              <p class="distance-txt">
+                avg.distance <span>{{ currentDestination.distance }}</span>
+              </p>
+              <p class="distance-txt">
+                est.travel time <span>{{ currentDestination.travel }}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
 <script>
-export default {}
+import Navigation from '@/components/Navigation.vue'
+import PageHeading from '@/components/PageHeading.vue'
+import destinationData from '@/assets/data.json'
+
+export default {
+  name: 'DestinationView',
+  components: {
+    Navigation,
+    PageHeading,
+  },
+  data() {
+    return {
+      destinations: [],
+      currentDestination: null,
+    }
+  },
+  created() {
+    this.destinations = destinationData.destinations
+    this.selectDestination('moon')
+  },
+  methods: {
+    selectDestination(name) {
+      this.currentDestination = this.destinations.find((dest) => dest.name.toLowerCase() === name)
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>

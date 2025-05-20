@@ -6,7 +6,6 @@
 
 <script>
 import { RouterView } from 'vue-router'
-import Navigation from './components/Navigation.vue'
 export default {}
 </script>
 
