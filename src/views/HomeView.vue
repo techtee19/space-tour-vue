@@ -161,6 +161,7 @@ export default {
     margin-top: 40px;
     width: 100vw;
   }
+
   .text {
     max-width: 100vw;
     margin-bottom: 6vw;
