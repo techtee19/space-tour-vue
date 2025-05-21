@@ -147,6 +147,7 @@ export default {
   .crew-container {
     background: url('/src/assets/crew/background-crew-tablet.jpg') no-repeat center center/cover;
     height: auto;
+    min-height: 100vh;
     /* padding: 0 40px; */
   }
 
@@ -207,6 +208,7 @@ export default {
   .crew-container {
     background: url('/src/assets/crew/background-crew-mobile.jpg') no-repeat center center/cover;
     padding: 0 24px;
+    min-height: 100vh;
   }
 
   .crew-content {

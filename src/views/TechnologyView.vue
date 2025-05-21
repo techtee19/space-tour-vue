@@ -78,7 +78,6 @@ export default {
     center/cover;
   height: auto;
   min-height: 100vh;
-
   max-width: 130rem;
   padding: 0 1.2rem;
 }
@@ -209,6 +208,7 @@ export default {
     background: url('/src/assets/technology/background-technology-desktop.jpg') no-repeat center
       center/cover;
     height: auto;
+    min-height: 100vh;
     /* padding: 0 165px; Matches your previous design */
   }
 }
@@ -226,6 +226,7 @@ export default {
     background: url('/src/assets/technology/background-technology-tablet.jpg') no-repeat center
       center/cover;
     height: auto;
+    min-height: 100vh;
     /* padding: 0 40px; */
   }
 
