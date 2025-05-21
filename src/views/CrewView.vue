@@ -65,6 +65,8 @@ export default {
   max-width: 130rem;
   min-height: 100vh;
   padding: 0 1.2rem;
+  /* box-sizing: border-box; */
+  overflow-x: hidden;
 }
 
 .dots {
@@ -148,6 +150,8 @@ export default {
     background: url('/src/assets/crew/background-crew-tablet.jpg') no-repeat center center/cover;
     height: auto;
     min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
     /* padding: 0 40px; */
   }
 
@@ -209,6 +213,8 @@ export default {
     background: url('/src/assets/crew/background-crew-mobile.jpg') no-repeat center center/cover;
     padding: 0 24px;
     min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .crew-content {

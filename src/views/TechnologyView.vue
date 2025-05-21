@@ -80,6 +80,8 @@ export default {
   min-height: 100vh;
   max-width: 130rem;
   padding: 0 1.2rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .headings {
@@ -209,6 +211,8 @@ export default {
       center/cover;
     height: auto;
     min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
     /* padding: 0 165px; Matches your previous design */
   }
 }
@@ -227,6 +231,8 @@ export default {
       center/cover;
     height: auto;
     min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
     /* padding: 0 40px; */
   }
 
@@ -285,6 +291,8 @@ export default {
       center/cover;
     height: auto; /* Allow content to dictate height */
     padding: 0 40px;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .tech-content {
@@ -336,6 +344,8 @@ export default {
     background: url('/src/assets/technology/background-technology-mobile.jpg') no-repeat center
       center/cover;
     padding: 0 24px;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .tech-content {
