@@ -2,7 +2,7 @@
   <div class="tech-container">
     <Navigation />
     <main>
-      <PageHeading :number="'03'" title="Space launch 101" />
+      <PageHeading number="03" title="Space launch 101" />
       <div class="tech-content" v-if="currentTech">
         <div class="tech-tabs">
           <a
