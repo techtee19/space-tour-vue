@@ -62,7 +62,7 @@ export default {
   },
   created() {
     this.technology = techData.technology
-    this.selectTech('launch Vehicle')
+    this.selectTech('launch vehicle')
     window.addEventListener('resize', this.handleResize)
   },
   beforeUnmount() {
@@ -89,10 +89,12 @@ export default {
 
 .tech-content {
   transition: opacity 0.3s ease;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 2rem;
   max-width: 100rem;
+  padding: 2rem 0;
 }
 
 .tech-tabs {
@@ -228,6 +230,7 @@ export default {
   }
 
   .tech-content {
+    display: flex;
     flex-direction: column;
     text-align: center;
     gap: 4rem;

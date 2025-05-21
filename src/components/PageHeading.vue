@@ -23,9 +23,9 @@ export default {
 
 <style scoped>
 .headings {
-  margin-bottom: 5.6rem;
+  margin: 3rem 0 5.6rem;
   font-size: 1.2rem;
-  padding: 0 9.6rem;
+  font-weight: 400;
   text-transform: uppercase;
 }
 

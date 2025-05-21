@@ -2,8 +2,8 @@
   <div class="destination-container">
     <Navigation />
     <main>
-      <PageHeading number="01" title="Pick your destination" />
       <div class="dest-content" v-if="currentDestination">
+        <PageHeading number="01" title="Pick your destination" />
         <div class="dest-cont">
           <div class="dest-img">
             <img :src="currentDestination.images.png" :alt="currentDestination.name" />
@@ -75,6 +75,7 @@ export default {
   background: url('/src/assets/destination/background-destination-desktop.jpg') no-repeat center
     center/cover;
   height: 100%;
+  min-height: 100vh;
   max-width: 130rem;
   padding: 0 1.2rem;
 }
@@ -232,23 +233,23 @@ export default {
   .destination-container {
     background: url('/src/assets/destination/background-destination-mobile.jpg') no-repeat center
       center/cover;
-    padding: 0 0.2rem;
+    padding: 0;
     min-height: 100vh;
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
   }
   .dest-content {
-    padding: 0 1vw;
-    max-width: 100vw;
+    padding: 0 24px;
+    max-width: 100%;
     box-sizing: border-box;
   }
   .dest-cont {
     flex-direction: column;
     align-items: center;
-    gap: 4vw;
-    max-width: 100vw;
+    gap: 26px;
+    max-width: 100%;
     box-sizing: border-box;
   }
   .dest-txt-cont {
@@ -256,62 +257,71 @@ export default {
     align-items: center;
     text-align: center;
     margin: 0 auto;
-    max-width: 100vw;
+    max-width: 100%;
     box-sizing: border-box;
   }
   .dest-img img {
-    width: 55vw;
-    max-width: 160px;
-    margin: 0 auto 4vw auto;
+    width: 170px;
+    height: auto;
+    margin: 0 auto 26px auto;
     display: block;
-    max-width: 100vw;
-    box-sizing: border-box;
   }
   .dest-list {
     justify-content: center;
-    gap: 6vw;
-    margin-bottom: 4vw;
-    font-size: 3.5vw;
+    gap: 26px;
+    margin-bottom: 20px;
     letter-spacing: 2px;
   }
   .dest-link {
-    font-size: 4vw;
-    padding-bottom: 1vw;
+    font-size: 14px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2.36px;
   }
   .dest-head {
-    font-size: 9vw;
-    margin-bottom: 2vw;
-    letter-spacing: 1px;
+    font-size: 56px;
+    margin-bottom: 8px;
+    letter-spacing: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   .dest-txt {
-    font-size: 3vw;
-    margin-bottom: 4vw;
-    line-height: 1.5;
+    font-size: 15px;
+    margin-bottom: 32px;
+    line-height: 25px;
     color: #d0d6f9;
-    padding: 0 2vw;
+    padding: 0;
+    font-weight: 400;
+    max-width: 327px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .dest-line {
-    border: 0.5px solid #ffffff3a;
-    margin: 4vw 0;
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    margin: 32px auto;
     width: 100%;
   }
   .distance-cont {
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8vw;
+    gap: 32px;
     width: 100%;
   }
   .distance-txt {
-    font-size: 2.8vw;
+    font-size: 14px;
     text-align: center;
     color: #d0d6f9;
+    text-transform: uppercase;
+    letter-spacing: 2.36px;
   }
   .distance-txt span {
-    font-size: 5vw;
+    font-size: 28px;
     color: #fff;
     display: block;
-    margin-top: 0.5vw;
+    margin-top: 12px;
+    text-transform: uppercase;
+    font-weight: 400;
   }
 }
 </style>

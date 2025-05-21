@@ -2,8 +2,8 @@
   <div class="crew-container">
     <Navigation />
     <main>
-      <PageHeading :number="'02'" :title="'Meet our crew'" />
       <div class="crew-content" v-if="currentCrew">
+        <PageHeading :number="'02'" :title="'Meet our crew'" />
         <div class="crew-cont">
           <div class="crew-text-cont">
             <h2 class="crew-role">{{ currentCrew.role }}</h2>
@@ -63,6 +63,7 @@ export default {
   background: url('/src/assets/crew/background-crew-desktop.jpg') no-repeat center center/cover;
   height: 100%;
   max-width: 130rem;
+  min-height: 100vh;
   padding: 0 1.2rem;
 }
 
@@ -144,7 +145,7 @@ export default {
 
 @media (max-width: 768px) {
   .crew-container {
-    background: url('/assets/crew/background-crew-tablet.jpg') no-repeat center center/cover;
+    background: url('/src/assets/crew/background-crew-tablet.jpg') no-repeat center center/cover;
     height: auto;
     /* padding: 0 40px; */
   }
@@ -204,7 +205,7 @@ export default {
 
 @media (max-width: 375px) {
   .crew-container {
-    background: url('/assets/crew/background-crew-mobile.jpg') no-repeat center center/cover;
+    background: url('/src/assets/crew/background-crew-mobile.jpg') no-repeat center center/cover;
     padding: 0 24px;
   }
 
