@@ -1,25 +1,39 @@
 <template>
-  <div class="container">
+  <div class="home-bg min-vh-100 d-flex flex-column">
     <Navigation />
-    <div class="content">
-      <div class="text">
-        <h5>So, you want to travel to</h5>
-        <h1>Space</h1>
-        <p>
-          Let's face it; if you want to go to space, you might as well genuinely go to outer space
-          and not hover kind of on the edge of it. Well sit back, and relax because we'll give you a
-          truly out of this world experience!
-        </p>
+    <main class="container flex-grow-1 d-flex align-items-center">
+      <div class="row w-100 align-items-center">
+        <!-- Text Content -->
+        <div class="col-lg-6 text-lg-start mb-5 mb-lg-0 ps-lg-5">
+          <h5 class="home-subtitle text-uppercase">So, you want to travel to</h5>
+          <h1 class="home-title text-uppercase">Space</h1>
+          <p class="home-description">
+            Let's face it; if you want to go to space, you might as well genuinely go to outer space
+            and not hover kind of on the edge of it. Well sit back, and relax because we'll give you
+            a truly out of this world experience!
+          </p>
+        </div>
+
+        <!-- Explore Button -->
+        <div
+          class="col-lg-6 d-flex justify-content-lg-end justify-content-center align-items-center"
+        >
+          <button
+            class="explore-btn rounded-circle bg-white border-0 text-dark text-uppercase d-flex align-items-center justify-content-center"
+            @click="navigateToDestination"
+            aria-label="Explore destinations"
+          >
+            Explore
+          </button>
+        </div>
       </div>
-      <div class="button">
-        <button @click="navigateToDestination">Explore</button>
-      </div>
-    </div>
+    </main>
   </div>
 </template>
 
 <script>
 import Navigation from '@/components/Navigation.vue'
+
 export default {
   name: 'HomeView',
   components: {
@@ -27,188 +41,161 @@ export default {
   },
   methods: {
     navigateToDestination() {
-      this.$$router.push('/destination')
+      this.$router.push('/destination')
     },
   },
 }
 </script>
 
 <style scoped>
-.container {
+.home-bg {
   background: url('/src/assets/home/background-home-desktop.jpg') no-repeat center center/cover;
-  height: auto;
-  min-height: 100vh;
+  background-color: #0b0d17; /* Fallback color */
+  overflow: hidden;
 }
 
-.content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6.4rem;
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto;
-  height: calc(100vh - 96px); /* Adjust for header height */
-}
-
-.text {
-  max-width: 50%;
-}
-
-.text h5 {
+.home-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #d0d6f9c4;
-  margin-bottom: 10px;
-}
-
-.text h1 {
-  font-size: 120px;
-  font-family: 'Bellefair', serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.text p {
-  font-family: 'Barlow', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 28px;
+  letter-spacing: 4.75px;
   color: #d0d6f9;
+  font-weight: 400;
+  margin-bottom: 24px;
 }
 
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.button button {
-  background: white;
-  color: black;
-  border: none;
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
+.home-title {
   font-family: 'Bellefair', serif;
-  font-size: 24px;
-  text-transform: uppercase;
+  font-size: 150px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+
+.home-description {
+  font-family: 'Barlow', sans-serif;
+  font-size: 18px;
+  line-height: 32px;
+  color: #d0d6f9;
+  max-width: 450px;
+  font-weight: 400;
+}
+
+.explore-btn {
+  width: 274px;
+  height: 274px;
+  font-family: 'Bellefair', serif;
+  font-size: 32px;
+  letter-spacing: 2px;
   cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  color: #0b0d17;
 }
 
-.button button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+.explore-btn:hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 450px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  z-index: -1;
+  transition: all 0.3s ease;
+  animation: pulse 1.5s infinite;
 }
 
-/* Tablet (768px to 1050px) */
-@media (max-width: 1050px) {
-  .container {
-    background: url('/src/assets/home/background-home-tablet.jpg') no-repeat center center/cover;
-    min-height: 100vh;
-    width: 100vw;
+@keyframes pulse {
+  0% {
+    width: 274px;
+    height: 274px;
+    opacity: 1;
   }
-  .content {
-    flex-direction: column;
+  100% {
+    width: 450px;
+    height: 450px;
+    opacity: 0;
+  }
+}
+
+/* Tablet styles */
+@media (max-width: 992px) {
+  .home-bg {
+    background-image: url('/src/assets/home/background-home-tablet.jpg');
+  }
+
+  .home-subtitle {
+    font-size: 20px;
     text-align: center;
-    padding: 4vw 2vw;
-    width: 100vw;
-    height: auto;
-    margin-top: 60px;
   }
-  .text {
-    max-width: 90vw;
-    margin-bottom: 4vw;
+
+  .home-title {
+    font-size: 100px;
+    text-align: center;
   }
-  .text h5 {
-    font-size: 3vw;
-    letter-spacing: 0.4vw;
+
+  .home-description {
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 24px;
   }
-  .text h1 {
-    font-size: 10vw;
-    margin-bottom: 2vw;
-  }
-  .text p {
-    font-size: 2vw;
-    line-height: 1.5;
-  }
-  .button button {
-    width: 20vw;
-    height: 20vw;
-    font-size: 2vw;
-    min-width: 90px;
-    min-height: 90px;
+
+  .explore-btn {
+    width: 242px;
+    height: 242px;
+    font-size: 28px;
+    margin-top: 80px;
   }
 }
 
-/* Mobile (375px and below) */
-@media (max-width: 600px) {
-  .container {
-    background: url('/src/assets/home/background-home-mobile.jpg') no-repeat center center/cover;
-    min-height: 100vh;
-    width: 100vw;
+/* Mobile styles */
+@media (max-width: 576px) {
+  .home-bg {
+    background-image: url('/src/assets/home/background-home-mobile.jpg');
   }
-  .content {
-    flex-direction: column;
-    text-align: center;
-    padding: 6vw 2vw;
+
+  .home-subtitle {
+    font-size: 16px;
+    letter-spacing: 2.7px;
+  }
+
+  .home-title {
+    font-size: 80px;
+  }
+
+  .home-description {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .explore-btn {
+    width: 150px;
+    height: 150px;
+    font-size: 20px;
     margin-top: 40px;
-    width: 100vw;
   }
 
-  .text {
-    max-width: 100vw;
-    margin-bottom: 6vw;
+  .explore-btn:hover::after {
+    width: 250px;
+    height: 250px;
   }
-  .text h5 {
-    font-size: 4vw;
-    letter-spacing: 0.5vw;
-  }
-  .text h1 {
-    font-size: 12vw;
-    margin-bottom: 3vw;
-  }
-  .text p {
-    font-size: 3vw;
-    line-height: 1.4;
-  }
-  .button button {
-    width: 24vw;
-    height: 24vw;
-    font-size: 3vw;
-    min-width: 60px;
-    min-height: 60px;
-  }
-}
 
-@media (max-width: 375px) {
-  .container {
-    background: url('/src/assets/home/background-home-mobile.jpg') no-repeat center center/cover;
-    min-height: 100vh;
-    width: 100vw;
-  }
-  .content {
-    padding: 8vw 2vw;
-    margin-top: 24px;
-  }
-  .text h5 {
-    font-size: 5vw;
-  }
-  .text h1 {
-    font-size: 14vw;
-  }
-  .button button {
-    width: 28vw;
-    height: 28vw;
-    font-size: 4vw;
-    min-width: 40px;
-    min-height: 40px;
+  @keyframes pulse {
+    0% {
+      width: 150px;
+      height: 150px;
+      opacity: 1;
+    }
+    100% {
+      width: 250px;
+      height: 250px;
+      opacity: 0;
+    }
   }
 }
 </style>

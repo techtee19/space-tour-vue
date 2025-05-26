@@ -1,38 +1,54 @@
 <template>
-  <div class="destination-container">
+  <div class="destination-bg min-vh-100">
     <Navigation />
-    <main>
-      <div class="dest-content" v-if="currentDestination">
-        <PageHeading number="01" title="Pick your destination" />
-        <div class="dest-cont">
-          <div class="dest-img">
-            <img :src="currentDestination.images.png" :alt="currentDestination.name" />
-          </div>
-          <div class="dest-txt-cont">
-            <ul class="dest-list">
-              <li v-for="dest in destinations" :key="dest.name">
-                <a
-                  class="dest-link"
-                  :class="{ 'dest-link--active': currentDestination.name === dest.name }"
-                  href="#"
-                  @click.prevent="selectDestination(dest.name.toLowerCase())"
-                >
-                  {{ dest.name.toUpperCase() }}
-                </a>
-              </li>
-            </ul>
-            <h1 class="dest-head">{{ currentDestination.name.toUpperCase() }}</h1>
-            <p class="dest-txt">
-              {{ currentDestination.description }}
-            </p>
-            <div class="dest-line"></div>
-            <div class="distance-cont">
-              <p class="distance-txt">
-                avg.distance <span>{{ currentDestination.distance }}</span>
-              </p>
-              <p class="distance-txt">
-                est.travel time <span>{{ currentDestination.travel }}</span>
-              </p>
+    <main class="container pt-5">
+      <PageHeading number="01" title="Pick your destination" />
+
+      <div class="row align-items-center justify-content-center mt-lg-5" v-if="currentDestination">
+        <!-- Planet Image -->
+        <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0 pt-4">
+          <img
+            :src="currentDestination.images.png"
+            :alt="currentDestination.name"
+            class="destination-image img-fluid"
+          />
+        </div>
+
+        <!-- Planet Info -->
+        <div class="col-12 col-lg-6">
+          <!-- Navigation Pills -->
+          <ul class="destination-nav list-unstyled d-flex mb-4 mb-md-5">
+            <li class="me-4" v-for="dest in destinations" :key="dest.name">
+              <a
+                class="destination-pill"
+                :class="{ active: currentDestination.name === dest.name }"
+                href="#"
+                @click.prevent="selectDestination(dest.name.toLowerCase())"
+              >
+                {{ dest.name }}
+              </a>
+            </li>
+          </ul>
+
+          <!-- Destination Content -->
+          <h1 class="destination-title mb-3">
+            {{ currentDestination.name.toUpperCase() }}
+          </h1>
+          <p class="destination-description mb-5">
+            {{ currentDestination.description }}
+          </p>
+
+          <hr class="destination-divider mb-4" />
+
+          <!-- Distance & Travel Time -->
+          <div class="d-flex flex-column flex-md-row">
+            <div class="me-md-5 mb-4 mb-md-0">
+              <p class="distance-label text-uppercase mb-2">Avg. Distance</p>
+              <p class="distance-value mb-0">{{ currentDestination.distance }}</p>
+            </div>
+            <div>
+              <p class="distance-label text-uppercase mb-2">Est. travel time</p>
+              <p class="distance-value mb-0">{{ currentDestination.travel }}</p>
             </div>
           </div>
         </div>
@@ -71,257 +87,162 @@ export default {
 </script>
 
 <style scoped>
-.destination-container {
+.destination-bg {
   background: url('/src/assets/destination/background-destination-desktop.jpg') no-repeat center
     center/cover;
-  height: 100%;
-  min-height: 100vh;
-  max-width: 130rem;
-  padding: 0 1.2rem;
+  background-color: #0b0d17; /* Fallback color */
+  overflow-x: hidden;
 }
 
-.dest-content {
-  max-width: 120rem;
-  padding: 0 7.2rem;
-  /* margin: 0 15rem; */
-  place-content: center;
+.destination-image {
+  max-width: 445px;
+  transition: transform 0.5s ease;
 }
 
-.dest-cont {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-content: center;
-  /* justify-items: center; */
-  /* width: 80%; */
+.destination-nav {
+  margin-top: 10px;
 }
 
-.dest-img img {
-  width: 70%;
-}
-
-.dest-list {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.dest-link {
+.destination-pill {
   color: #d0d6f9;
   text-decoration: none;
-  font-size: 16px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0 0 12px 0;
+  text-transform: uppercase;
   letter-spacing: 2.7px;
-  padding-bottom: 8px;
-  transition: color 0.3s ease;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
-.dest-link:hover {
+.destination-pill:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
   color: white;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
 }
 
-.dest-link--active {
+.destination-pill.active {
+  border-bottom-color: white;
   color: white;
-  border-bottom: 3px solid white;
 }
 
-.dest-head {
-  font-size: 6.4rem;
+.destination-title {
+  font-family: 'Bellefair', serif;
+  font-size: 100px;
+  font-weight: 400;
+  color: white;
   text-transform: uppercase;
-  font-weight: 300;
-  margin-bottom: 1.8rem;
+  line-height: 1;
 }
 
-.dest-txt-cont {
-  align-items: left;
-  width: 80%;
+.destination-description {
+  color: #d0d6f9;
+  line-height: 32px;
+  font-size: 18px;
+  font-family: 'Barlow', sans-serif;
+  max-width: 445px;
+  font-weight: 400;
 }
 
-.dest-txt {
-  font-size: 1.2rem;
-  margin-bottom: 2.4rem;
-  line-height: 2;
+.destination-divider {
+  border-color: rgba(255, 255, 255, 0.2);
+  margin-top: 0;
 }
 
-.dest-line {
-  border: 0.1px solid #ffffff6f;
-  margin-bottom: 2.4rem;
+.distance-label {
+  color: #d0d6f9;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2.36px;
 }
 
-.distance-cont {
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  gap: 4.6rem;
-}
-
-.distance-txt {
-  font-size: 1rem;
+.distance-value {
+  font-family: 'Bellefair', serif;
+  font-size: 28px;
   text-transform: uppercase;
-  font-weight: 100;
+  font-weight: 400;
+  color: white;
 }
 
-.distance-txt span {
-  font-size: 2.4rem;
-}
+/* Responsive styles */
+@media (max-width: 992px) {
+  .destination-bg {
+    background-image: url('/src/assets/destination/background-destination-tablet.jpg');
+  }
 
-@media (max-width: 1050px) {
-  .destination-container {
-    background: url('/src/assets/destination/background-destination-tablet.jpg') no-repeat center
-      center/cover;
-    padding: 0 0.5rem;
-    min-height: 100vh;
+  .destination-title {
+    font-size: 80px;
+    text-align: center;
   }
-  .dest-content {
-    padding: 0 2vw;
-    max-width: 100vw;
+
+  .destination-description {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 28px;
   }
-  .dest-cont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+  .destination-nav {
     justify-content: center;
-    gap: 3vw;
   }
-  .dest-img img {
-    width: 45vw;
+
+  .destination-divider {
+    max-width: 75%;
+    margin: 0 auto 28px;
+  }
+
+  .distance-label,
+  .distance-value {
+    text-align: center;
+  }
+
+  .d-flex.flex-column.flex-md-row {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .destination-image {
     max-width: 300px;
-    margin: 0 auto 2vw auto;
-    display: block;
-  }
-  .dest-txt-cont {
-    width: 100%;
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-  }
-  .dest-list {
-    justify-content: center;
-    gap: 1.5vw;
-    margin-bottom: 2vw;
-  }
-  .dest-link {
-    font-size: 2vw;
-    padding-bottom: 0.5vw;
-  }
-  .dest-head {
-    font-size: 6vw;
-    margin-bottom: 1vw;
-  }
-  .dest-txt {
-    font-size: 1.5vw;
-    margin-bottom: 2vw;
-    line-height: 1.7;
-  }
-  .dest-line {
-    margin-bottom: 2vw;
-  }
-  .distance-cont {
-    flex-direction: row;
-    justify-content: center;
-    gap: 6vw;
-  }
-  .distance-txt {
-    font-size: 1.2vw;
-  }
-  .distance-txt span {
-    font-size: 2.5vw;
   }
 }
-@media (max-width: 600px) {
-  .destination-container {
-    background: url('/src/assets/destination/background-destination-mobile.jpg') no-repeat center
-      center/cover;
-    padding: 0;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
+
+@media (max-width: 576px) {
+  .destination-bg {
+    background-image: url('/src/assets/destination/background-destination-mobile.jpg');
   }
-  .dest-content {
-    padding: 0 24px;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  .dest-cont {
-    flex-direction: column;
-    align-items: center;
-    gap: 26px;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  .dest-txt-cont {
-    width: 100%;
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  .dest-img img {
-    width: 170px;
-    height: auto;
-    margin: 0 auto 26px auto;
-    display: block;
-  }
-  .dest-list {
-    justify-content: center;
-    gap: 26px;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-  }
-  .dest-link {
-    font-size: 14px;
-    padding-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 2.36px;
-  }
-  .dest-head {
+
+  .destination-title {
     font-size: 56px;
-    margin-bottom: 8px;
-    letter-spacing: normal;
-    font-weight: 400;
-    line-height: normal;
   }
-  .dest-txt {
+
+  .destination-description {
     font-size: 15px;
-    margin-bottom: 32px;
     line-height: 25px;
-    color: #d0d6f9;
-    padding: 0;
-    font-weight: 400;
-    max-width: 327px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 0 12px;
   }
-  .dest-line {
-    border: 0.5px solid rgba(255, 255, 255, 0.2);
-    margin: 32px auto;
-    width: 100%;
+
+  .destination-image {
+    max-width: 170px;
   }
-  .distance-cont {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    width: 100%;
-  }
-  .distance-txt {
+
+  .destination-pill {
     font-size: 14px;
-    text-align: center;
-    color: #d0d6f9;
-    text-transform: uppercase;
     letter-spacing: 2.36px;
   }
-  .distance-txt span {
-    font-size: 28px;
-    color: #fff;
-    display: block;
-    margin-top: 12px;
-    text-transform: uppercase;
-    font-weight: 400;
+
+  .destination-nav {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .me-4 {
+    margin-right: 1rem !important;
+  }
+
+  .destination-divider {
+    max-width: 100%;
   }
 }
 </style>
